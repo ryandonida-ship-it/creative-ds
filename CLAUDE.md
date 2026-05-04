@@ -194,6 +194,80 @@ Animated gradient border on hover. Always inline the quotes SVG.
 
 ---
 
+## Badge
+
+Types: `badge-purple` / `badge-orange` / `badge-grey` / `badge-blue`
+Sizes: `badge-xs` / `badge-sm` / `badge-md` / `badge-lg`
+
+```html
+<span class="badge badge-md badge-purple">New</span>
+<span class="badge badge-md badge-orange">Beta</span>
+<span class="badge badge-md badge-grey">Coming soon</span>
+<span class="badge badge-md badge-blue">Updated</span>
+```
+
+---
+
+## Stats Bar
+
+Themes: `stats-bar` (light) / `stats-bar stats-bar-dark` / `stats-bar stats-bar-gradient`
+Supports 2–4 `.stats-bar-item` children. Optional `.stats-bar-body` and `.stats-bar-source` per item.
+
+```html
+<div class="stats-bar">
+  <div class="stats-bar-item">
+    <div class="stats-bar-value">68%</div>
+    <div class="stats-bar-label">Faster API delivery</div>
+    <div class="stats-bar-body">Optional supporting line.</div>
+    <div class="stats-bar-source">Source: Forrester, 2024</div>
+  </div>
+  <!-- repeat for 2–4 items -->
+</div>
+```
+
+---
+
+## Highlight Block
+
+Backgrounds: `highlight-block-grey` / `highlight-block-black` / `highlight-block-gradient`
+
+```html
+<div class="highlight-block highlight-block-grey">
+  <span class="highlight-block-pill">New</span>
+  <div class="highlight-block-heading">Heading here</div>
+  <div class="highlight-block-body">Supporting body copy.</div>
+  <div class="highlight-block-actions">
+    <a href="#" class="gb gb-md gb-primary">CTA</a>
+    <a href="#" class="gb gb-md gb-ghost">Secondary</a>
+  </div>
+</div>
+```
+
+---
+
+## Side by Side
+
+Default layout: text left, image right. Add `sbs-reverse` to flip. Add `sbs-dark` for dark text theme.
+
+```html
+<div class="sbs">  <!-- add sbs-reverse to flip; sbs-dark for dark bg -->
+  <div class="sbs-text">
+    <div class="sbs-eyebrow">Eyebrow</div>
+    <div class="sbs-heading">Section heading here</div>
+    <div class="sbs-body">Body copy here.</div>
+    <div class="sbs-actions">
+      <a href="#" class="gb gb-md gb-primary">CTA</a>
+    </div>
+  </div>
+  <div class="sbs-media">
+    <img src="..." alt="">
+    <!-- or use <div class="sbs-media-placeholder">placeholder</div> -->
+  </div>
+</div>
+```
+
+---
+
 ## Updating the design system
 
 All styles live in `components.css` and `tokens.css` in this repo. Edit those files and push — every page referencing the CDN URL updates automatically. After changing a component, also update this CLAUDE.md and the visual library (`index.html`) to match.

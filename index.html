@@ -83,6 +83,10 @@
       <li><a href="#cards">Cards</a></li>
       <li><a href="#quote">Quote</a></li>
       <li><a href="#forms">Forms</a></li>
+      <li><a href="#badge">Badge</a></li>
+      <li><a href="#statsbar">Stats Bar</a></li>
+      <li><a href="#highlight">Highlight Block</a></li>
+      <li><a href="#sbs">Side by Side</a></li>
       <li><a href="#footer">Footer</a></li>
       <li><a href="template.html" target="_blank">↗ Template</a></li>
     </ul>
@@ -428,6 +432,210 @@
       <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;hr class="section-divider"&gt;
 
 &lt;div class="fade-up"&gt;This fades in on scroll.&lt;/div&gt;</div>
+    </section>
+
+    <!-- ─── BADGE ─── -->
+    <section class="ds-section" id="badge">
+      <div class="ds-section-title">Badge</div>
+      <div class="ds-group">
+        <div class="ds-group-label">Types</div>
+        <div class="ds-canvas" style="align-items:center;gap:12px;">
+          <span class="badge badge-md badge-purple">Purple</span>
+          <span class="badge badge-md badge-orange">Orange</span>
+          <span class="badge badge-md badge-grey">Grey</span>
+          <span class="badge badge-md badge-blue">Blue</span>
+        </div>
+      </div>
+      <div class="ds-group">
+        <div class="ds-group-label">Sizes</div>
+        <div class="ds-canvas" style="align-items:center;gap:12px;">
+          <span class="badge badge-xs badge-purple">XSmall</span>
+          <span class="badge badge-sm badge-purple">Small</span>
+          <span class="badge badge-md badge-purple">Medium</span>
+          <span class="badge badge-lg badge-purple">Large</span>
+        </div>
+      </div>
+      <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;span class="badge badge-md badge-purple"&gt;New&lt;/span&gt;
+&lt;span class="badge badge-md badge-orange"&gt;Beta&lt;/span&gt;
+&lt;span class="badge badge-md badge-grey"&gt;Coming soon&lt;/span&gt;
+&lt;span class="badge badge-md badge-blue"&gt;Updated&lt;/span&gt;
+
+&lt;!-- Sizes: badge-xs  badge-sm  badge-md  badge-lg --&gt;</div>
+    </section>
+
+    <!-- ─── STATS BAR ─── -->
+    <section class="ds-section" id="statsbar">
+      <div class="ds-section-title">Stats Bar</div>
+      <div class="ds-group">
+        <div class="ds-group-label">Light — 3 items</div>
+        <div class="ds-canvas ds-canvas--full">
+          <div class="stats-bar">
+            <div class="stats-bar-item">
+              <div class="stats-bar-value">68%</div>
+              <div class="stats-bar-label">Faster API delivery</div>
+              <div class="stats-bar-body">Teams ship integrations in days, not weeks.</div>
+            </div>
+            <div class="stats-bar-item">
+              <div class="stats-bar-value">4×</div>
+              <div class="stats-bar-label">More test coverage</div>
+              <div class="stats-bar-body">Automated collections replace manual QA scripts.</div>
+            </div>
+            <div class="stats-bar-item">
+              <div class="stats-bar-value">$2.4M</div>
+              <div class="stats-bar-label">Saved annually</div>
+              <div class="stats-bar-source">Source: Forrester TEI Study, 2024</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-group">
+        <div class="ds-group-label">Dark — 4 items</div>
+        <div class="ds-canvas ds-canvas--full ds-canvas--dark">
+          <div class="stats-bar stats-bar-dark">
+            <div class="stats-bar-item"><div class="stats-bar-value">500K+</div><div class="stats-bar-label">Organizations</div></div>
+            <div class="stats-bar-item"><div class="stats-bar-value">30M</div><div class="stats-bar-label">Developers</div></div>
+            <div class="stats-bar-item"><div class="stats-bar-value">1.5B</div><div class="stats-bar-label">API calls daily</div></div>
+            <div class="stats-bar-item"><div class="stats-bar-value">99.9%</div><div class="stats-bar-label">Uptime SLA</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-group">
+        <div class="ds-group-label">Gradient — 2 items</div>
+        <div class="ds-canvas ds-canvas--full">
+          <div class="stats-bar stats-bar-gradient">
+            <div class="stats-bar-item">
+              <div class="stats-bar-value">3×</div>
+              <div class="stats-bar-label">Faster onboarding</div>
+              <div class="stats-bar-body">New engineers become productive in their first week.</div>
+            </div>
+            <div class="stats-bar-item">
+              <div class="stats-bar-value">82%</div>
+              <div class="stats-bar-label">Reduction in incidents</div>
+              <div class="stats-bar-body">Catch breaking changes before they reach production.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;div class="stats-bar"&gt;              &lt;!-- or stats-bar-dark / stats-bar-gradient --&gt;
+  &lt;div class="stats-bar-item"&gt;
+    &lt;div class="stats-bar-value"&gt;68%&lt;/div&gt;
+    &lt;div class="stats-bar-label"&gt;Faster API delivery&lt;/div&gt;
+    &lt;div class="stats-bar-body"&gt;Optional supporting line.&lt;/div&gt;
+    &lt;div class="stats-bar-source"&gt;Source: Forrester, 2024&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- repeat .stats-bar-item for 2–4 stats --&gt;
+&lt;/div&gt;</div>
+    </section>
+
+    <!-- ─── HIGHLIGHT BLOCK ─── -->
+    <section class="ds-section" id="highlight">
+      <div class="ds-section-title">Highlight Block</div>
+      <div class="ds-group">
+        <div class="ds-group-label">Grey background</div>
+        <div class="ds-canvas ds-canvas--full">
+          <div class="highlight-block highlight-block-grey">
+            <span class="highlight-block-pill">New</span>
+            <div class="highlight-block-heading">Automate your entire API lifecycle in one platform</div>
+            <div class="highlight-block-body">From design to mock to test to monitor — Postman keeps every team aligned and every API production-ready.</div>
+            <div class="highlight-block-actions">
+              <a href="#" class="gb gb-md gb-primary">Get started free</a>
+              <a href="#" class="gb gb-md gb-ghost">See how it works</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-group">
+        <div class="ds-group-label">Black background</div>
+        <div class="ds-canvas ds-canvas--full ds-canvas--dark">
+          <div class="highlight-block highlight-block-black">
+            <span class="highlight-block-pill">Enterprise</span>
+            <div class="highlight-block-heading">Built for security-first engineering teams</div>
+            <div class="highlight-block-body">SSO, SCIM, audit logs, and role-based access — everything your security team requires, out of the box.</div>
+            <div class="highlight-block-actions">
+              <a href="#" class="gb gb-md gb-orange-gradient">Request a demo</a>
+              <a href="#" class="link-arrow" style="color:#aaa;">Learn about security →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-group">
+        <div class="ds-group-label">Orange gradient dark</div>
+        <div class="ds-canvas ds-canvas--full ds-canvas--dark">
+          <div class="highlight-block highlight-block-gradient">
+            <span class="highlight-block-pill">Featured</span>
+            <div class="highlight-block-heading">Ship APIs your customers can count on</div>
+            <div class="highlight-block-body">End-to-end observability, automated regression suites, and contract testing that catches breaking changes before they ship.</div>
+            <div class="highlight-block-actions">
+              <a href="#" class="gb gb-md gb-orange-gradient">Start building</a>
+              <a href="#" class="gb gb-md gb-orange-border">Enterprise demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;div class="highlight-block highlight-block-grey"&gt;   &lt;!-- or -black / -gradient --&gt;
+  &lt;span class="highlight-block-pill"&gt;New&lt;/span&gt;
+  &lt;div class="highlight-block-heading"&gt;Heading here&lt;/div&gt;
+  &lt;div class="highlight-block-body"&gt;Supporting body copy.&lt;/div&gt;
+  &lt;div class="highlight-block-actions"&gt;
+    &lt;a href="#" class="gb gb-md gb-primary"&gt;CTA&lt;/a&gt;
+    &lt;a href="#" class="gb gb-md gb-ghost"&gt;Secondary&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+    </section>
+
+    <!-- ─── SIDE BY SIDE ─── -->
+    <section class="ds-section" id="sbs">
+      <div class="ds-section-title">Side by Side</div>
+      <div class="ds-group">
+        <div class="ds-group-label">Text left, image right</div>
+        <div class="ds-canvas">
+          <div class="sbs" style="width:100%;">
+            <div class="sbs-text">
+              <div class="sbs-eyebrow">Automate</div>
+              <div class="sbs-heading">Test every API change before it ships</div>
+              <div class="sbs-body">Write once, run everywhere. Postman's collection runner executes your entire test suite on every commit.</div>
+              <div class="sbs-actions">
+                <a href="#" class="gb gb-md gb-primary">Get started free</a>
+                <a href="#" class="link-arrow">See the docs →</a>
+              </div>
+            </div>
+            <div class="sbs-media">
+              <div class="sbs-media-placeholder">Image / video</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-group">
+        <div class="ds-group-label">Text right, image left (sbs-reverse)</div>
+        <div class="ds-canvas">
+          <div class="sbs sbs-reverse" style="width:100%;">
+            <div class="sbs-text">
+              <div class="sbs-eyebrow">Collaborate</div>
+              <div class="sbs-heading">One workspace for your entire API team</div>
+              <div class="sbs-body">Designers, developers, and QA working in the same collections — no more hand-offs.</div>
+              <div class="sbs-actions">
+                <a href="#" class="gb gb-md gb-ghost">Watch the demo</a>
+              </div>
+            </div>
+            <div class="sbs-media">
+              <div class="sbs-media-placeholder">Image / video</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;div class="sbs"&gt;                        &lt;!-- add sbs-reverse to flip --&gt;
+  &lt;div class="sbs-text"&gt;
+    &lt;div class="sbs-eyebrow"&gt;Eyebrow&lt;/div&gt;
+    &lt;div class="sbs-heading"&gt;Section heading here&lt;/div&gt;
+    &lt;div class="sbs-body"&gt;Body copy here.&lt;/div&gt;
+    &lt;div class="sbs-actions"&gt;
+      &lt;a href="#" class="gb gb-md gb-primary"&gt;CTA&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sbs-media"&gt;
+    &lt;img src="..." alt=""&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
     </section>
 
     <!-- ─── FOOTER ─── -->
