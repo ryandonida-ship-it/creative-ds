@@ -1,0 +1,41 @@
+/* Postman Creative DS — Tokens v1 */
+
+@font-face {
+  font-family: 'degular-display';
+  src: url('https://postman-eng.github.io/creative-ds/fonts/DegularDisplay-Bold.woff2') format('woff2'),
+       url('https://postman-eng.github.io/creative-ds/fonts/DegularDisplay-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange:          #FF6C37;
+  --orange-btn:      #E0531F;
+  --dark:            #212121;
+  --secondary:       #6B6B6B;
+  --light-orange-bg: #FFF2EB;
+  --border:          #E6E6E6;
+  --white:           #FFFFFF;
+  --purple:          #6F2CBA;
+  --link-blue:       #0265D2;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--dark);
+  background: var(--white);
+  overflow-x: hidden;
+  min-width: 1280px;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll fade-up */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
