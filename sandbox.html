@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative DS — Sandbox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@100;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/awv0awk.css">
+  <!-- Local files — edits here reflect instantly, no CDN delay -->
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <style>
+    body { background: #f2f2f2; min-width: 0; }
+
+    /* ── Sandbox chrome ── */
+    .sb-bar {
+      background: #1a1a1a;
+      padding: 0 32px;
+      height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .sb-bar-left { display: flex; align-items: center; gap: 16px; }
+    .sb-logo { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: #FF6C37; letter-spacing: 1px; }
+    .sb-badge { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #555; background: #2a2a2a; padding: 3px 8px; border-radius: 4px; }
+    .sb-publish {
+      display: flex; align-items: center; gap: 10px;
+      background: #FF6C37; color: #fff; border: none; border-radius: 6px;
+      padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer;
+      font-family: 'Inter', sans-serif; transition: background 0.15s;
+    }
+    .sb-publish:hover { background: #e0531f; }
+    .sb-publish svg { width: 14px; height: 14px; }
+
+    /* ── Publish modal ── */
+    .sb-modal-bg {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 2000;
+      align-items: center; justify-content: center;
+    }
+    .sb-modal-bg.open { display: flex; }
+    .sb-modal {
+      background: #1a1a1a; border-radius: 12px; padding: 32px; max-width: 480px; width: 90%;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .sb-modal-title { font-family: 'degular-display', sans-serif; font-weight: 600; font-size: 22px; color: #fff; }
+    .sb-modal-body { font-size: 14px; line-height: 1.7; color: #aaa; }
+    .sb-modal-cmd {
+      background: #0d0d0d; border-radius: 8px; padding: 14px 16px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #FF6C37;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .sb-modal-copy {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+      color: #555; background: #1a1a1a; border: 1px solid #333; border-radius: 4px;
+      padding: 4px 10px; cursor: pointer; white-space: nowrap; transition: color 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .sb-modal-copy:hover { color: #fff; }
+    .sb-modal-steps { display: flex; flex-direction: column; gap: 10px; }
+    .sb-modal-step { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: #888; line-height: 1.5; }
+    .sb-step-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: #FF6C37; background: #2a2a2a; border-radius: 4px; padding: 2px 7px; flex-shrink: 0; margin-top: 1px; }
+    .sb-modal-close { background: #2a2a2a; color: #888; border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; align-self: flex-end; transition: color 0.15s; }
+    .sb-modal-close:hover { color: #fff; }
+
+    /* ── Canvas ── */
+    .sb-main { max-width: 1100px; margin: 0 auto; padding: 40px 48px; display: flex; flex-direction: column; gap: 48px; }
+    .sb-section { display: flex; flex-direction: column; gap: 16px; }
+    .sb-section-label {
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase; color: #999;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sb-section-label::after { content: ''; flex: 1; height: 1px; background: #e0e0e0; }
+    .sb-canvas {
+      background: #fff; border-radius: 12px; border: 1px solid #e6e6e6;
+      padding: 32px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start;
+    }
+    .sb-hint { font-size: 12px; color: #aaa; font-style: italic; padding: 4px 0; }
+
+    /* ── New component drop zone ── */
+    .sb-new {
+      border: 2px dashed #d0d0d0; border-radius: 12px; padding: 40px;
+      text-align: center; color: #bbb; font-size: 14px; line-height: 1.8;
+      transition: border-color 0.15s;
+    }
+    .sb-new strong { display: block; font-size: 16px; color: #999; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+  <!-- Sandbox top bar -->
+  <div class="sb-bar">
+    <div class="sb-bar-left">
+      <span class="sb-logo">CREATIVE-DS</span>
+      <span class="sb-badge">Sandbox — local only</span>
+    </div>
+    <button class="sb-publish" onclick="document.querySelector('.sb-modal-bg').classList.add('open')">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M8 10V2M4 6l4-4 4 4M2 13h12"/>
+      </svg>
+      Publish to Design System
+    </button>
+  </div>
+
+  <!-- Publish modal -->
+  <div class="sb-modal-bg" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="sb-modal">
+      <div class="sb-modal-title">Publish changes</div>
+      <div class="sb-modal-body">
+        Copy the command below and paste it into Claude Code. Claude will sync your local changes to the live design system and push to GitHub — all pages update automatically.
+      </div>
+      <div class="sb-modal-steps">
+        <div class="sb-modal-step"><span class="sb-step-num">1</span>Copy the command</div>
+        <div class="sb-modal-step"><span class="sb-step-num">2</span>Paste it into Claude Code (the prompt field)</div>
+        <div class="sb-modal-step"><span class="sb-step-num">3</span>All pages using the design system update within ~1 min</div>
+      </div>
+      <div class="sb-modal-cmd">
+        <span>! bash ~/projects/creative-ds/publish.sh</span>
+        <button class="sb-modal-copy" onclick="navigator.clipboard.writeText('! bash ~/projects/creative-ds/publish.sh');this.textContent='copied!'">copy</button>
+      </div>
+      <button class="sb-modal-close" onclick="this.closest('.sb-modal-bg').classList.remove('open')">Close</button>
+    </div>
+  </div>
+
+  <main class="sb-main">
+
+    <!-- ─── ADD NEW COMPONENTS HERE ─── -->
+    <!-- Duplicate a .sb-section block, label it, drop your component in .sb-canvas -->
+    <!-- When happy with it, add the CSS to components.css, then publish -->
+
+    <div class="sb-section">
+      <div class="sb-section-label">Buttons</div>
+      <div class="sb-canvas" style="align-items:center;">
+        <a href="#" class="btn-primary">Primary CTA</a>
+        <a href="#" class="btn-nav-secondary">Contact Sales</a>
+        <a href="#" class="btn-nav-primary">Launch Postman</a>
+        <a href="#" class="gb gb-md gb-ghost">Ghost</a>
+        <a href="#" class="gb gb-md gb-peach">Peach</a>
+        <a href="#" class="gb gb-md gb-orange-gradient">Gradient</a>
+        <a href="#" class="gb gb-md gb-orange-border">Border</a>
+        <a href="#" class="link-arrow">Link arrow →</a>
+      </div>
+      <div class="sb-hint">Edit components.css to change any of these — refresh to see updates.</div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-section-label">Typography</div>
+      <div class="sb-canvas" style="flex-direction:column;gap:20px;">
+        <div class="eyebrow" style="margin-bottom:0;">Eyebrow Label</div>
+        <h2 class="section-h2">Section Heading</h2>
+        <p style="font-size:16px;line-height:24px;color:var(--secondary);">Body text — Inter 400, 16px/24px, var(--secondary).</p>
+        <a href="#" class="link-arrow">Read the docs →</a>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-section-label">Cards</div>
+      <div class="sb-canvas">
+        <div style="border:1px solid var(--border);border-radius:12px;padding:24px;background:var(--white);width:280px;display:flex;flex-direction:column;gap:12px;transition:box-shadow 0.2s,transform 0.2s;cursor:pointer;" onmouseenter="this.style.cssText+=';box-shadow:0 8px 24px rgba(0,0,0,0.08);transform:translateY(-2px)'" onmouseleave="this.style.boxShadow='';this.style.transform=''">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.8px;text-transform:uppercase;">Feature</div>
+          <div style="font-family:'degular-display',sans-serif;font-weight:600;font-size:20px;line-height:26px;color:var(--dark);">Card title here</div>
+          <div style="font-size:14px;line-height:22px;color:var(--secondary);">Short description of this feature or capability in two sentences max.</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:12px;padding:24px;background:var(--white);width:280px;display:flex;flex-direction:column;gap:12px;transition:box-shadow 0.2s,transform 0.2s;cursor:pointer;" onmouseenter="this.style.cssText+=';box-shadow:0 8px 24px rgba(0,0,0,0.08);transform:translateY(-2px)'" onmouseleave="this.style.boxShadow='';this.style.transform=''">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.8px;text-transform:uppercase;">Capability</div>
+          <div style="font-family:'degular-display',sans-serif;font-weight:600;font-size:20px;line-height:26px;color:var(--dark);">Another card example</div>
+          <div style="font-size:14px;line-height:22px;color:var(--secondary);">This card pattern is the base for all cards across every page.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-section-label">Quote</div>
+      <div class="sb-canvas" style="padding:40px 60px;">
+        <div class="quote-card">
+          <div class="quote-mark-wrap">
+            <svg class="quote-mark" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M38.8301 24.3888C44.1556 24.3888 47.7444 27.8977 47.7444 33.0967C47.7444 37.7752 43.6196 41.6728 38.0329 41.6728C31.9137 41.6728 27.3921 36.9943 27.3921 29.8481C27.3921 13.6052 39.8952 7.10799 47.7444 6.32717V13.4734C42.4222 14.3828 36.4387 19.4501 36.1707 25.0411C36.4387 24.9126 37.5004 24.3888 38.8301 24.3888ZM11.6971 24.3888C17.0158 24.3888 20.608 27.8977 20.608 33.0967C20.608 37.7752 16.4832 41.6728 10.8965 41.6728C4.77728 41.6728 0.255676 36.9943 0.255676 29.8481C0.255676 13.6052 12.7588 7.10799 20.608 6.32717V13.4734C15.2858 14.3828 9.30227 19.4501 9.0343 25.0411C9.30227 24.9126 10.364 24.3888 11.6971 24.3888Z" fill="url(#qg2)"/><defs><linearGradient id="qg2" x1="0" y1="24" x2="48" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#FF6C37"/><stop offset="1" stop-color="#FFB400"/></linearGradient></defs></svg>
+          </div>
+          <div class="quote-right">
+            <div class="quote-top-row">
+              <div class="quote-text">"Postman cut our QA cycle time in half and gave us confidence to ship every Friday."</div>
+            </div>
+            <div class="quote-attr">
+              <div class="quote-name">Jane Smith</div>
+              <div class="quote-role">VP of Engineering, Acme Corp</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-section-label">Forms</div>
+      <div class="sb-canvas" style="flex-direction:column;max-width:480px;">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" placeholder="Jane"></div>
+          <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" placeholder="Smith"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Work email</label><input class="form-input" type="email" placeholder="jane@company.com"></div>
+        <div class="form-check"><input type="checkbox" id="sb-cb"><label for="sb-cb">I agree to the Terms of Service and Privacy Policy.</label></div>
+        <button class="btn-submit">Submit request</button>
+      </div>
+    </div>
+
+    <!-- ─── NEW COMPONENT STAGING AREA ─── -->
+    <div class="sb-section">
+      <div class="sb-section-label">New / In Progress</div>
+      <div class="sb-new">
+        <strong>Drop new components here</strong>
+        Build and test them in this section. When you're happy, add the CSS to <code>components.css</code> and click Publish.
+      </div>
+    </div>
+
+  </main>
+
+  <script src="animations.js"></script>
+</body>
+</html>
