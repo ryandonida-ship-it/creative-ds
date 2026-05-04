@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postman Creative DS — Component Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@100;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/awv0awk.css">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <style>
+    body { background: #f5f5f5; min-width: 0; }
+
+    .ds-nav {
+      background: #1a1a1a; color: #fff; padding: 14px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .ds-nav-logo {
+      font-family: 'IBM Plex Mono', monospace; font-size: 13px;
+      font-weight: 600; letter-spacing: 1px; color: #FF6C37;
+    }
+    .ds-nav-links { display: flex; gap: 24px; list-style: none; }
+    .ds-nav-links a { font-size: 13px; color: #aaa; text-decoration: none; transition: color 0.15s; }
+    .ds-nav-links a:hover { color: #fff; }
+
+    .ds-main { max-width: 1100px; margin: 0 auto; padding: 60px 48px; display: flex; flex-direction: column; gap: 80px; }
+
+    .ds-section { display: flex; flex-direction: column; gap: 32px; }
+    .ds-section-title {
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase; color: #888;
+      padding-bottom: 12px; border-bottom: 1px solid #e0e0e0;
+    }
+
+    .ds-group { display: flex; flex-direction: column; gap: 16px; }
+    .ds-group-label { font-size: 12px; font-weight: 600; color: #888; }
+
+    .ds-canvas {
+      background: #fff; border-radius: 12px; border: 1px solid #e6e6e6;
+      padding: 32px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start;
+    }
+    .ds-canvas--dark { background: #1a1a1a; }
+    .ds-canvas--full { padding: 0; overflow: hidden; }
+    .ds-canvas--padded-lg { padding: 48px 60px; }
+
+    .ds-snippet {
+      background: #1a1a1a; border-radius: 8px; padding: 16px 20px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.7;
+      color: #cdd6f4; overflow-x: auto; white-space: pre;
+      position: relative;
+    }
+    .ds-copy {
+      position: absolute; top: 10px; right: 12px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+      color: #888; cursor: pointer; background: #2a2a2a; border: none;
+      border-radius: 4px; padding: 3px 8px; transition: color 0.15s;
+    }
+    .ds-copy:hover { color: #fff; }
+
+    /* Token swatches */
+    .swatch-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .swatch { display: flex; flex-direction: column; gap: 8px; width: 100px; }
+    .swatch-color { width: 100px; height: 60px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.08); }
+    .swatch-name { font-size: 11px; font-weight: 600; color: #555; }
+    .swatch-hex { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #888; }
+
+    /* Type scale */
+    .type-row { display: flex; flex-direction: column; gap: 4px; padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #aaa; }
+  </style>
+</head>
+<body>
+
+  <nav class="ds-nav">
+    <span class="ds-nav-logo">POSTMAN / CREATIVE-DS</span>
+    <ul class="ds-nav-links">
+      <li><a href="#tokens">Tokens</a></li>
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#buttons">Buttons</a></li>
+      <li><a href="#nav">Nav</a></li>
+      <li><a href="#cards">Cards</a></li>
+      <li><a href="#quote">Quote</a></li>
+      <li><a href="#forms">Forms</a></li>
+      <li><a href="#footer">Footer</a></li>
+      <li><a href="template.html" target="_blank">↗ Template</a></li>
+    </ul>
+  </nav>
+
+  <main class="ds-main">
+
+    <!-- ─── TOKENS ─── -->
+    <section class="ds-section" id="tokens">
+      <div class="ds-section-title">Design Tokens</div>
+
+      <div class="ds-group">
+        <div class="ds-group-label">Colors</div>
+        <div class="ds-canvas">
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background:#FF6C37"></div><div class="swatch-name">--orange</div><div class="swatch-hex">#FF6C37</div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#E0531F"></div><div class="swatch-name">--orange-btn</div><div class="swatch-hex">#E0531F</div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#FFF2EB"></div><div class="swatch-name">--light-orange-bg</div><div class="swatch-hex">#FFF2EB</div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#212121"></div><div class="swatch-name">--dark</div><div class="swatch-hex">#212121</div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#6B6B6B"></div><div class="swatch-name">--secondary</div><div class="swatch-hex">#6B6B6B</div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#E6E6E6"></div><div class="swatch-name">--border</div><div class="swatch-hex">#E6E6E6</div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border: 1px solid #e6e6e6;"></div><div class="swatch-name">--white</div><div class="swatch-hex">#FFFFFF</div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#6F2CBA"></div><div class="swatch-name">--purple</div><div class="swatch-hex">#6F2CBA</div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#0265D2"></div><div class="swatch-name">--link-blue</div><div class="swatch-hex">#0265D2</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-group">
+        <div class="ds-group-label">Spacing & Layout</div>
+        <div class="ds-canvas">
+          <div style="font-size:13px; line-height:2; color:#555;">
+            <div><strong>Section padding:</strong> <code style="font-family:monospace;background:#f5f5f5;padding:2px 6px;border-radius:3px;">60px 160px</code></div>
+            <div><strong>Card padding:</strong> <code style="font-family:monospace;background:#f5f5f5;padding:2px 6px;border-radius:3px;">24px</code></div>
+            <div><strong>Card border-radius:</strong> <code style="font-family:monospace;background:#f5f5f5;padding:2px 6px;border-radius:3px;">12px</code></div>
+            <div><strong>Card border:</strong> <code style="font-family:monospace;background:#f5f5f5;padding:2px 6px;border-radius:3px;">1px solid var(--border)</code></div>
+            <div><strong>Card hover:</strong> <code style="font-family:monospace;background:#f5f5f5;padding:2px 6px;border-radius:3px;">box-shadow: 0 8px 24px rgba(0,0,0,0.08) + translateY(-2px)</code></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── TYPOGRAPHY ─── -->
+    <section class="ds-section" id="typography">
+      <div class="ds-section-title">Typography</div>
+
+      <div class="ds-canvas" style="flex-direction:column; gap:0; padding: 0 32px;">
+        <div class="type-row">
+          <div class="type-meta">Degular Display 700 · 55px / 60px · hero-h1</div>
+          <div style="font-family:'degular-display',sans-serif;font-weight:700;font-size:55px;line-height:60px;letter-spacing:-0.5px;color:#212121;">Hero Heading</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Degular Display 600 · 36px / 42px · section-h2</div>
+          <div class="section-h2">Section Heading</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Degular Display 600 · 28px / 32px · quote-text</div>
+          <div style="font-family:'degular-display',sans-serif;font-weight:600;font-size:28px;line-height:32px;color:#212121;">Quote / Pull Text</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Inter 600 · 22px / 32px · hero-subtitle</div>
+          <div style="font-size:22px;font-weight:600;line-height:32px;color:#212121;">Hero Subtitle</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Inter 400 · 16px / 24px · body</div>
+          <div style="font-size:16px;line-height:24px;color:#6B6B6B;">Body text — used for section descriptions, callout body, card body text.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Inter 400 · 14px / 22px · small body</div>
+          <div style="font-size:14px;line-height:22px;color:#6B6B6B;">Small body text — used for card bodies, resource descriptions, footer links.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">IBM Plex Mono 400 · 13px · eyebrow (small)</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:#FF6C37;">Eyebrow Label</div>
+        </div>
+        <div class="type-row" style="border-bottom:none;">
+          <div class="type-meta">IBM Plex Mono 400 · 20px · .eyebrow (large)</div>
+          <div class="eyebrow" style="margin-bottom:0;">Large Eyebrow</div>
+        </div>
+      </div>
+
+      <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;div class="eyebrow"&gt;Eyebrow Label&lt;/div&gt;
+&lt;h2 class="section-h2"&gt;Section Heading&lt;/h2&gt;</div>
+    </section>
+
+    <!-- ─── BUTTONS ─── -->
+    <section class="ds-section" id="buttons">
+      <div class="ds-section-title">Buttons</div>
+
+      <div class="ds-group">
+        <div class="ds-group-label">Primary actions</div>
+        <div class="ds-canvas" style="align-items:center;">
+          <a href="#" class="btn-primary">Get started free</a>
+          <a href="#" class="gb gb-md gb-primary">gb-primary</a>
+          <a href="#" class="gb gb-sm gb-primary">gb-primary sm</a>
+        </div>
+        <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;a href="#" class="btn-primary"&gt;Get started free&lt;/a&gt;
+&lt;a href="#" class="gb gb-md gb-primary"&gt;Button&lt;/a&gt;</div>
+      </div>
+
+      <div class="ds-group">
+        <div class="ds-group-label">Secondary / Nav</div>
+        <div class="ds-canvas" style="align-items:center;">
+          <a href="#" class="btn-nav-secondary">Contact Sales</a>
+          <a href="#" class="btn-nav-primary">Launch Postman</a>
+          <a href="#" class="gb gb-md gb-secondary">gb-secondary</a>
+          <a href="#" class="gb gb-md gb-ghost">gb-ghost</a>
+        </div>
+        <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;a href="#" class="btn-nav-secondary"&gt;Contact Sales&lt;/a&gt;
+&lt;a href="#" class="btn-nav-primary"&gt;Launch Postman&lt;/a&gt;
+&lt;a href="#" class="gb gb-md gb-ghost"&gt;See how it works&lt;/a&gt;</div>
+      </div>
+
+      <div class="ds-group">
+        <div class="ds-group-label">Accent styles</div>
+        <div class="ds-canvas" style="align-items:center;">
+          <a href="#" class="gb gb-md gb-peach">gb-peach</a>
+          <a href="#" class="gb gb-md gb-purple">gb-purple</a>
+          <a href="#" class="gb gb-md gb-orange-gradient">gb-orange-gradient</a>
+          <a href="#" class="gb gb-md gb-orange-border">gb-orange-border</a>
+        </div>
+        <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;a href="#" class="gb gb-md gb-peach"&gt;Button&lt;/a&gt;
+&lt;a href="#" class="gb gb-md gb-orange-gradient"&gt;Button&lt;/a&gt;
+&lt;a href="#" class="gb gb-md gb-orange-border"&gt;Button&lt;/a&gt;</div>
+      </div>
+
+      <div class="ds-group">
+        <div class="ds-group-label">Link arrow</div>
+        <div class="ds-canvas">
+          <a href="#" class="link-arrow">Learn more →</a>
+          <a href="#" class="link-arrow">Read the docs →</a>
+        </div>
+        <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;a href="#" class="link-arrow"&gt;Learn more →&lt;/a&gt;</div>
+      </div>
+    </section>
+
+    <!-- ─── NAV ─── -->
+    <section class="ds-section" id="nav">
+      <div class="ds-section-title">Nav</div>
+      <div class="ds-canvas ds-canvas--full">
+        <nav class="nav" style="position:relative; top:auto;">
+          <div class="nav-left">
+            <a class="nav-logo" href="#">
+              <div class="nav-logo-mark">
+                <svg width="32" height="32" viewBox="0 0 113 113" fill="none"><path d="M56.9714 109.171C85.6714 109.171 108.971 85.8714 108.971 57.1714C108.971 28.4714 85.6714 5.17139 56.9714 5.17139C28.2714 5.17139 4.97141 28.3714 4.97141 57.1714C4.97141 85.9714 28.2714 109.171 56.9714 109.171Z" fill="white"/><path d="M63.6714 0.471412C32.7714 -3.52859 4.47141 18.3714 0.471412 49.2714C-3.52859 80.2714 18.3714 108.571 49.2714 112.471C80.2714 116.471 108.571 94.5714 112.471 63.6714C116.471 32.6714 94.5714 4.37141 63.6714 0.471412Z" fill="#FF6C37"/></svg>
+              </div>
+            </a>
+            <ul class="nav-links">
+              <li><a href="#">Product <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z"/></svg></a></li>
+              <li><a href="#">Solutions <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><path d="M10.375,3.219,6,6.719l-4.375-3.5A1,1,0,1,0,.375,4.781l5,4a1,1,0,0,0,1.25,0l5-4a1,1,0,0,0-1.25-1.562Z"/></svg></a></li>
+              <li><a href="#">Why Postman</a></li>
+              <li><a href="#">Enterprise</a></li>
+              <li><a href="#">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="nav-right">
+            <a href="#" class="btn-nav-secondary">Contact Sales</a>
+            <a href="#" class="btn-nav-primary">Launch Postman</a>
+          </div>
+        </nav>
+      </div>
+      <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;nav class="nav" id="main-nav"&gt;
+  &lt;div class="nav-left"&gt;
+    &lt;a class="nav-logo" href="#"&gt;...logo svg...&lt;/a&gt;
+    &lt;ul class="nav-links"&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Product&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class="nav-right"&gt;
+    &lt;a href="#" class="btn-nav-secondary"&gt;Contact Sales&lt;/a&gt;
+    &lt;a href="#" class="btn-nav-primary"&gt;Launch Postman&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</div>
+    </section>
+
+    <!-- ─── CARDS ─── -->
+    <section class="ds-section" id="cards">
+      <div class="ds-section-title">Cards</div>
+
+      <div class="ds-group">
+        <div class="ds-group-label">Generic card (base pattern)</div>
+        <div class="ds-canvas">
+          <div style="border:1px solid var(--border);border-radius:12px;padding:24px;background:var(--white);width:280px;display:flex;flex-direction:column;gap:12px;transition:box-shadow 0.2s,transform 0.2s;cursor:pointer;" onmouseenter="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)';this.style.transform='translateY(-2px)'" onmouseleave="this.style.boxShadow='';this.style.transform=''">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.8px;text-transform:uppercase;">Eyebrow</div>
+            <div style="font-family:'degular-display',sans-serif;font-weight:600;font-size:20px;line-height:26px;color:var(--dark);">Card Title Goes Here</div>
+            <div style="font-size:14px;line-height:22px;color:var(--secondary);">Card body text describing the content or feature in a concise way.</div>
+          </div>
+          <div style="border:1px solid var(--border);border-radius:12px;padding:24px;background:var(--white);width:280px;display:flex;flex-direction:column;gap:12px;transition:box-shadow 0.2s,transform 0.2s;cursor:pointer;" onmouseenter="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)';this.style.transform='translateY(-2px)'" onmouseleave="this.style.boxShadow='';this.style.transform=''">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.8px;text-transform:uppercase;">Eyebrow</div>
+            <div style="font-family:'degular-display',sans-serif;font-weight:600;font-size:20px;line-height:26px;color:var(--dark);">Another Card Example</div>
+            <div style="font-size:14px;line-height:22px;color:var(--secondary);">Keep card body concise — two to three lines maximum for scanability.</div>
+          </div>
+        </div>
+        <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;div style="border:1px solid var(--border);border-radius:12px;padding:24px;
+     background:var(--white);display:flex;flex-direction:column;gap:12px;
+     transition:box-shadow 0.2s,transform 0.2s;"
+     onmouseenter="this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)';this.style.transform='translateY(-2px)'"
+     onmouseleave="this.style.boxShadow='';this.style.transform=''"&gt;
+  &lt;div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
+       color:var(--orange);letter-spacing:0.8px;text-transform:uppercase;"&gt;Eyebrow&lt;/div&gt;
+  &lt;div style="font-family:'degular-display',sans-serif;font-weight:600;
+       font-size:20px;line-height:26px;color:var(--dark);"&gt;Card Title&lt;/div&gt;
+  &lt;div style="font-size:14px;line-height:22px;color:var(--secondary);"&gt;Body text.&lt;/div&gt;
+&lt;/div&gt;</div>
+      </div>
+
+      <div class="ds-group">
+        <div class="ds-group-label">Resource card</div>
+        <div class="ds-canvas">
+          <div class="resource-card" style="width:300px;">
+            <div class="resource-card-img" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:12px;color:#aaa;">Image 300×200</span>
+            </div>
+            <div class="resource-card-body">
+              <div class="resource-eyebrow">Guide</div>
+              <div class="resource-title">Resource Card Title</div>
+              <div class="resource-body">Short description of the resource content.</div>
+              <a href="#" class="link-arrow">Read more →</a>
+            </div>
+          </div>
+        </div>
+        <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;div class="resource-card"&gt;
+  &lt;div class="resource-card-img"&gt;&lt;img src="..." alt=""&gt;&lt;/div&gt;
+  &lt;div class="resource-card-body"&gt;
+    &lt;div class="resource-eyebrow"&gt;Guide&lt;/div&gt;
+    &lt;div class="resource-title"&gt;Title&lt;/div&gt;
+    &lt;div class="resource-body"&gt;Description&lt;/div&gt;
+    &lt;a href="#" class="link-arrow"&gt;Read more →&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+      </div>
+
+      <div class="ds-group">
+        <div class="ds-group-label">Metrics / stat strip (light-orange-bg)</div>
+        <div class="ds-canvas" style="background:var(--light-orange-bg); flex-direction:column; gap:8px;">
+          <div style="display:flex;gap:60px;">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="font-family:'degular-display',sans-serif;font-weight:700;font-size:55px;line-height:1;color:var(--dark);">35%</div>
+              <div style="font-size:15px;line-height:22px;color:var(--dark);">Reduction in production defects</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="font-family:'degular-display',sans-serif;font-weight:700;font-size:55px;line-height:1;color:var(--dark);">2×</div>
+              <div style="font-size:15px;line-height:22px;color:var(--dark);">Faster release cycles</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="font-family:'degular-display',sans-serif;font-weight:700;font-size:55px;line-height:1;color:var(--dark);">100%</div>
+              <div style="font-size:15px;line-height:22px;color:var(--dark);">Audit-ready coverage</div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;section style="background:var(--light-orange-bg);padding:60px 160px;"&gt;
+  &lt;div style="font-family:'degular-display',sans-serif;font-weight:700;
+       font-size:55px;line-height:1;color:var(--dark);"&gt;35%&lt;/div&gt;
+  &lt;div style="font-size:15px;line-height:22px;color:var(--dark);"&gt;
+    Reduction in production defects
+  &lt;/div&gt;
+&lt;/section&gt;</div>
+      </div>
+    </section>
+
+    <!-- ─── QUOTE ─── -->
+    <section class="ds-section" id="quote">
+      <div class="ds-section-title">Quote</div>
+      <div class="ds-canvas ds-canvas--padded-lg">
+        <div class="quote-card">
+          <div class="quote-mark-wrap">
+            <svg class="quote-mark" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M38.8301 24.3888C44.1556 24.3888 47.7444 27.8977 47.7444 33.0967C47.7444 37.7752 43.6196 41.6728 38.0329 41.6728C31.9137 41.6728 27.3921 36.9943 27.3921 29.8481C27.3921 13.6052 39.8952 7.10799 47.7444 6.32717V13.4734C42.4222 14.3828 36.4387 19.4501 36.1707 25.0411C36.4387 24.9126 37.5004 24.3888 38.8301 24.3888ZM11.6971 24.3888C17.0158 24.3888 20.608 27.8977 20.608 33.0967C20.608 37.7752 16.4832 41.6728 10.8965 41.6728C4.77728 41.6728 0.255676 36.9943 0.255676 29.8481C0.255676 13.6052 12.7588 7.10799 20.608 6.32717V13.4734C15.2858 14.3828 9.30227 19.4501 9.0343 25.0411C9.30227 24.9126 10.364 24.3888 11.6971 24.3888Z" fill="url(#qg)"/><defs><linearGradient id="qg" x1="0" y1="24" x2="48" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#FF6C37"/><stop offset="1" stop-color="#FFB400"/></linearGradient></defs></svg>
+          </div>
+          <div class="quote-right">
+            <div class="quote-top-row">
+              <div class="quote-text">"Postman cut our QA cycle time in half and gave us confidence to ship every Friday."</div>
+            </div>
+            <div class="quote-attr">
+              <div class="quote-name">Jane Smith</div>
+              <div class="quote-role">VP of Engineering, Acme Corp</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;div class="quote-card"&gt;
+  &lt;div class="quote-mark-wrap"&gt;
+    &lt;!-- inline quotes.svg here --&gt;
+  &lt;/div&gt;
+  &lt;div class="quote-right"&gt;
+    &lt;div class="quote-top-row"&gt;
+      &lt;div class="quote-text"&gt;"Quote text here."&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="quote-attr"&gt;
+      &lt;div class="quote-name"&gt;Name&lt;/div&gt;
+      &lt;div class="quote-role"&gt;Title, Company&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+    </section>
+
+    <!-- ─── FORMS ─── -->
+    <section class="ds-section" id="forms">
+      <div class="ds-section-title">Forms</div>
+      <div class="ds-canvas" style="flex-direction:column; max-width:500px;">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First name</label>
+            <input class="form-input" type="text" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last name</label>
+            <input class="form-input" type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Work email</label>
+          <input class="form-input" type="email" placeholder="jane@company.com">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="demo-check">
+          <label for="demo-check">I agree to the Terms of Service and Privacy Policy.</label>
+        </div>
+        <button class="btn-submit">Submit request</button>
+      </div>
+      <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;div class="form-row"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="form-label"&gt;First name&lt;/label&gt;
+    &lt;input class="form-input" type="text"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="form-check"&gt;
+  &lt;input type="checkbox" id="cb"&gt;
+  &lt;label for="cb"&gt;I agree to the terms.&lt;/label&gt;
+&lt;/div&gt;
+&lt;button class="btn-submit"&gt;Submit&lt;/button&gt;</div>
+    </section>
+
+    <!-- ─── DIVIDER ─── -->
+    <section class="ds-section">
+      <div class="ds-section-title">Divider + Fade-up</div>
+      <div class="ds-canvas" style="flex-direction:column;gap:24px;">
+        <hr class="section-divider">
+        <div style="font-size:13px;color:#888;">↑ section-divider — 1px solid var(--border)</div>
+        <div style="padding:20px;background:#f5f5f5;border-radius:8px;font-size:13px;color:#555;line-height:1.8;">
+          Add <code style="font-family:monospace;background:#e8e8e8;padding:2px 6px;border-radius:3px;">class="fade-up"</code> to any element for a scroll-triggered fade-in-up animation. The observer is initialized automatically by <code style="font-family:monospace;background:#e8e8e8;padding:2px 6px;border-radius:3px;">animations.js</code>.
+        </div>
+      </div>
+      <div class="ds-snippet"><button class="ds-copy" onclick="copySnippet(this)">copy</button>&lt;hr class="section-divider"&gt;
+
+&lt;div class="fade-up"&gt;This fades in on scroll.&lt;/div&gt;</div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <section class="ds-section" id="footer">
+      <div class="ds-section-title">Footer</div>
+    </section>
+  </main>
+
+  <!-- Full footer preview -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo-col">
+        <svg class="footer-logo" width="80" height="80" viewBox="0 0 113 113" fill="none" aria-label="Postman">
+          <circle cx="56.97" cy="56.97" r="52" fill="#FF6C37"/>
+          <path d="M75.37 35.67c-1.1 0-2.1.4-2.8 1.2l-21 21-4.5-4.5c20.7-20.6 24.4-20.8 28.2-17.7z" fill="white"/>
+        </svg>
+      </div>
+      <div class="footer-col"><div class="footer-col-title">Product</div><ul><li><a href="#">What is Postman?</a></li><li><a href="#">Enterprise</a></li><li><a href="#">Postbot</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Resources</div><ul><li><a href="#">Docs</a></li><li><a href="#">Academy</a></li><li><a href="#">Community</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <div class="footer-bottom-left"><a href="#" class="footer-build-now">Build now →</a></div>
+      <div class="footer-copyright">© 2025 Postman, Inc.</div>
+    </div>
+  </footer>
+
+  <script src="animations.js"></script>
+  <script>
+    function copySnippet(btn) {
+      const code = btn.parentElement.textContent.replace('copy', '').trim();
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'copied!';
+        setTimeout(() => btn.textContent = 'copy', 1500);
+      });
+    }
+  </script>
+</body>
+</html>
