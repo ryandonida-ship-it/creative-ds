@@ -23,14 +23,33 @@
     .sb-bar-left { display: flex; align-items: center; gap: 16px; }
     .sb-logo { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: #FF6C37; letter-spacing: 1px; }
     .sb-badge { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #555; background: #2a2a2a; padding: 3px 8px; border-radius: 4px; }
+    /* ── Changes toggle ── */
+    .sb-toggle {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+      color: #444; cursor: pointer; user-select: none;
+      background: #2a2a2a; border: 1px solid #3a3a3a; border-radius: 6px;
+      padding: 6px 12px; transition: border-color 0.15s, color 0.15s;
+    }
+    .sb-toggle:hover { border-color: #555; color: #888; }
+    .sb-toggle.active { border-color: #FF6C37; color: #FF6C37; }
+    .sb-toggle-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #444; flex-shrink: 0; transition: background 0.15s;
+    }
+    .sb-toggle.active .sb-toggle-dot { background: #FF6C37; }
+
     .sb-publish {
       display: flex; align-items: center; gap: 10px;
       background: #FF6C37; color: #fff; border: none; border-radius: 6px;
       padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer;
-      font-family: 'Inter', sans-serif; transition: background 0.15s;
+      font-family: 'Inter', sans-serif; transition: background 0.15s, opacity 0.15s;
     }
     .sb-publish:hover { background: #e0531f; }
     .sb-publish svg { width: 14px; height: 14px; }
+    .sb-publish:disabled {
+      opacity: 0.25; cursor: not-allowed; pointer-events: none;
+    }
 
     /* ── Publish modal ── */
     .sb-modal-bg {
@@ -95,12 +114,18 @@
       <span class="sb-logo">CREATIVE-DS</span>
       <span class="sb-badge">Sandbox — local only</span>
     </div>
-    <button class="sb-publish" onclick="document.querySelector('.sb-modal-bg').classList.add('open')">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-        <path d="M8 10V2M4 6l4-4 4 4M2 13h12"/>
-      </svg>
-      Publish to Design System
-    </button>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="sb-toggle" id="sb-toggle" onclick="toggleChanges()">
+        <span class="sb-toggle-dot"></span>
+        <span id="sb-toggle-label">No changes</span>
+      </button>
+      <button class="sb-publish" id="sb-publish" disabled onclick="document.querySelector('.sb-modal-bg').classList.add('open')">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M8 10V2M4 6l4-4 4 4M2 13h12"/>
+        </svg>
+        Publish to Design System
+      </button>
+    </div>
   </div>
 
   <!-- Publish modal -->
@@ -119,7 +144,7 @@
         <span>! bash ~/projects/creative-ds/publish.sh</span>
         <button class="sb-modal-copy" onclick="navigator.clipboard.writeText('! bash ~/projects/creative-ds/publish.sh');this.textContent='copied!'">copy</button>
       </div>
-      <button class="sb-modal-close" onclick="this.closest('.sb-modal-bg').classList.remove('open')">Close</button>
+      <button class="sb-modal-close" onclick="this.closest('.sb-modal-bg').classList.remove('open');resetChanges()">Done — mark as published</button>
     </div>
   </div>
 
@@ -362,5 +387,30 @@
   </main>
 
   <script src="animations.js"></script>
+  <script>
+    const STORAGE_KEY = 'creative-ds-changes-pending';
+
+    function toggleChanges() {
+      const isPending = localStorage.getItem(STORAGE_KEY) === '1';
+      isPending ? resetChanges() : markChanges();
+    }
+
+    function markChanges() {
+      localStorage.setItem(STORAGE_KEY, '1');
+      document.getElementById('sb-toggle').classList.add('active');
+      document.getElementById('sb-toggle-label').textContent = 'Changes pending';
+      document.getElementById('sb-publish').disabled = false;
+    }
+
+    function resetChanges() {
+      localStorage.removeItem(STORAGE_KEY);
+      document.getElementById('sb-toggle').classList.remove('active');
+      document.getElementById('sb-toggle-label').textContent = 'No changes';
+      document.getElementById('sb-publish').disabled = true;
+    }
+
+    // Restore state on load
+    if (localStorage.getItem(STORAGE_KEY) === '1') markChanges();
+  </script>
 </body>
 </html>
